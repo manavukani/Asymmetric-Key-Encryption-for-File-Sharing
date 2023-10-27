@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if session.username %}
+<html>
+<h2>Home</h2>
+<p>Welcome, {{ session.username }}!</p>
+<h3>Send a Message</h3>
+<form method="post" action="/send_message" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="recipient">To:</label>
+        <input type="text" class="form-control" id="recipient" name="recipient">
+    </div>
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <input type="file" class="form-control" id="file" name="file">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+{% else %}
+<p>Please <a href="/login">login</a> to send a message.</p>
+{% endif %}
+{% if error %}
+<p class="error" style="color: red;">{{ error }}</p>
+{% endif %}
+</html>
+{% endblock %}

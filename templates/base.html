@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    
+            .container {
+                margin-top: 50px;
+            }
+    
+            .navbar {
+                margin-bottom: 50px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/login">Secure Messaging App</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if session.username  %}
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/view_messages">Messages</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/signup">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <!-- {% with messages = get_flashed_messages() %}
+        {% if decrypted_message %}
+        <div class="alert alert-warning">
+            <ul>
+                {% for message in decrypted_message %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %} -->
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

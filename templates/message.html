@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decrypted Messages</title>
+    <style>
+        .go-to-right {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    {% if session.username %}
+	{% if messages %}
+		<h1>Available Messages</h1>
+		{% for sender_username, decrypted_message, filename, decrypted_file, date_time in messages %}
+			<!-- <p>From: {{ sender_username }}</p>
+			<p>Message: {{ decrypted_message }}</p> -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong >From:</strong> {{ sender_username  }}
+            
+                    <div class="go-to-right"><strong>Date:</strong> {{ date_time }}</div>
+                </div>
+                {% if decrypted_message %}
+                <div class="panel-body">
+                    {{ decrypted_message }}
+                </div>
+                {% endif %}
+                {% if decrypted_file %}
+                <div class="panel-footer">
+                    <strong>File:</strong> {{ filename }}<br>
+                    <a href="/download/{{ filename }}">Download</a>
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+	{% else %}
+		<p>No messages to display.</p>
+	{% endif %}
+    {% else %}
+    <p>Please <a href="/login">login</a> to view messages.</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}
+
+
