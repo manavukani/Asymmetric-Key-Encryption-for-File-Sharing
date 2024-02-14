@@ -28,3 +28,9 @@
 ## Screenshot
 ![image](https://github.com/Jenis08/Secure-File-Sharing/assets/84531789/08ee5142-3e60-4f6e-9e9d-3b85226f6009)
 
+# Running the Project
+
+1. Clone the repo
+2. Open the command prompt
+3. Navigate to the project dir
+4. Run `pyhton app.py`
